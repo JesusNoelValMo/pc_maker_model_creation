@@ -1,0 +1,7 @@
+pymysql
+pandas
+matplotlib
+seaborn
+numpy
+sklearn
+scipy
