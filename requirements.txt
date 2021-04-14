@@ -5,3 +5,5 @@ seaborn
 numpy
 sklearn
 scipy
+flask
+flask-cors
