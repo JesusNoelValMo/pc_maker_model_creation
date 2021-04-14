@@ -34,5 +34,6 @@ def transform_input(input_data):
     df[["size_scaled"]] = size_scaler_low.transform(df[["size"]])
     df[["Ram_scaled"]] = Ram_scaler_low.transform(df[["Ram"]])
     df = df.drop([ "DirectX", "Notes", "Description", "Game Name", "id"], axis=1)
+    
     df = PCA_transformer_90_low.transform(df.drop(["Graphics", "Processor","size", "Ram", "OS"], axis=1))
     return df
