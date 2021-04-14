@@ -4,8 +4,12 @@ import transformers
 from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
 
-def Create_New_Model(clusters):
-    pass
+def Create_New_Model(df, clusters, model_name):
+    model = KMeans(n_clusters=clusters)
+    model.fit(df)
+    joblib.dump(model, f"Models/{model_name}.pkl")
+    
+
 
 def Create_New_Transformers(df):
 

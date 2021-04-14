@@ -27,10 +27,7 @@ def transform_input(input_data):
     df = clean_GB.transform(df, "Ram") 
     
     df = OHE_processor_low.transform(df, "Processor")
-    print(df.shape)
     df = OHE_Graphics_low.transform(df, "Graphics")
-    print(df.shape)
-    
     windows_transformer = transformers.Round_Windows()
     df["OS"] = windows_transformer.fit_transform(df["OS"])
     df = OHE_Windows_low.transform(df, "OS")
