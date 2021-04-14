@@ -27,6 +27,7 @@ class OneHotEncoder_transformer(BaseEstimator,TransformerMixin):
   def fit(self, df, y=None):
     encoded_column = self.encoder.fit(df[[self.column]])
     print(self.encoder.categories_)
+    print(len(self.encoder.categories_[0]))
   def transform(self, df, column):
     encoded_column = self.encoder.transform(df[[column]])
     encoded_column = encoded_column.toarray()

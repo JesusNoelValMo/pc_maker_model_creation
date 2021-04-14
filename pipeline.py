@@ -27,12 +27,16 @@ def transform_input(input_data):
     df = clean_GB.transform(df, "Ram") 
     
     df = OHE_processor_low.transform(df, "Processor")
+    print(df.shape)
     df = OHE_Graphics_low.transform(df, "Graphics")
+    print(df.shape)
+    
     windows_transformer = transformers.Round_Windows()
     df["OS"] = windows_transformer.fit_transform(df["OS"])
     df = OHE_Windows_low.transform(df, "OS")
     df[["size_scaled"]] = size_scaler_low.transform(df[["size"]])
     df[["Ram_scaled"]] = Ram_scaler_low.transform(df[["Ram"]])
     df = df.drop([ "DirectX", "Notes", "Description", "Game Name", "id"], axis=1)
+    
     df = PCA_transformer_90_low.transform(df.drop(["Graphics", "Processor","size", "Ram", "OS"], axis=1))
     return df

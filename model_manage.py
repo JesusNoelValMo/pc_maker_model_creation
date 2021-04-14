@@ -3,6 +3,7 @@ import joblib
 import transformers
 from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
+
 def Create_New_Model(clusters):
     pass
 
@@ -33,7 +34,7 @@ def Create_New_Transformers(df):
     OHE_Graphics_low = transformers.OneHotEncoder_transformer("Graphics")
     OHE_Graphics_low.fit(df, "Graphics")
     df =  OHE_Graphics_low.transform(df, "Graphics")
-    joblib.dump(OHE_processor_low, "Transformers/OHE_Graphics_low.pkl")
+    joblib.dump(OHE_Graphics_low, "Transformers/OHE_Graphics_low.pkl")
     
     
     windows_transformer = transformers.Round_Windows()
@@ -46,6 +47,7 @@ def Create_New_Transformers(df):
     
     df = df.drop([ "DirectX", "Notes", "Description", "Game Name", "id"], axis=1)
     PCA_transformer_90_low = PCA(n_components=0.90)
+    print(df.shape)
     df = PCA_transformer_90_low.fit_transform(df.drop(["Graphics", "Processor","size", "Ram", "OS"], axis=1))
     joblib.dump(PCA_transformer_90_low, "Transformers/PCA_transformer_90_low.pkl")
     return df
